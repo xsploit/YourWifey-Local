@@ -5,6 +5,7 @@ import {
   buildSemanticMemoryContext,
   findSemanticMemoryMatchesInRecords,
   loadSemanticMemory,
+  saveSemanticMemory,
   scoreSemanticMemoryRecord,
   type SemanticMemoryRecord,
 } from './semantic-memory';
@@ -60,6 +61,21 @@ describe('semantic memory', () => {
     expect(records[0]?.scopeKey).toBe(scopeKey);
     expect(records[0]?.embedding).toEqual([1, 0, 0]);
     expect(records[0]?.text).toContain('vector memory');
+  });
+
+  it('clears semantic memories for a scope when saved empty', async () => {
+    const scopeKey = 'local:persona:hikari-chan';
+
+    await addSemanticMemoryTurn({
+      assistantText: 'Saved.',
+      embedding: [1, 0, 0],
+      persona: DEFAULT_PERSONA,
+      scopeKey,
+      userText: 'remember my favorite stage is chroma',
+    });
+    await saveSemanticMemory(scopeKey, []);
+
+    expect(await loadSemanticMemory(scopeKey)).toEqual([]);
   });
 
   it('ranks local vector matches above unrelated lexical records', () => {

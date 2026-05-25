@@ -78,6 +78,7 @@ import {
   addSemanticMemoryTurn,
   buildSemanticMemoryContext,
   findSemanticMemoryMatches,
+  saveSemanticMemory,
 } from './lib/chat/semantic-memory';
 import {
   commitScopedRelationshipMemoryState,
@@ -3953,8 +3954,9 @@ function App() {
     commitScopedRelationshipMemory(activeRelationshipStateKey, createDefaultRelationshipMemory());
     setGrilloMemoryState(clearGrilloMemoryState(activeRelationshipStateKey));
     void clearGrilloMemoryStateAsync(activeRelationshipStateKey);
+    void saveSemanticMemory(activeRelationshipStateKey, []);
     memoryAgentPendingChatTurnCountsRef.current[activeRelationshipStateKey] = 0;
-    setMemoryAgentStatus('Memory cleared for current scope.');
+    setMemoryAgentStatus('Memory cleared for current scope, including semantic recall.');
   }, [activeRelationshipStateKey, commitScopedRelationshipMemory]);
 
   const handleResetContext = useCallback(() => {
@@ -3965,8 +3967,9 @@ function App() {
     commitScopedRelationshipMemory(activeRelationshipStateKey, createDefaultRelationshipMemory());
     setGrilloMemoryState(clearGrilloMemoryState(activeRelationshipStateKey));
     void clearGrilloMemoryStateAsync(activeRelationshipStateKey);
+    void saveSemanticMemory(activeRelationshipStateKey, []);
     memoryAgentPendingChatTurnCountsRef.current[activeRelationshipStateKey] = 0;
-    setMemoryAgentStatus('Context and memory cleared for current scope.');
+    setMemoryAgentStatus('Context and memory cleared for current scope, including semantic recall.');
   }, [activeRelationshipStateKey, cancelAssistantPresentation, commitScopedRelationshipMemory]);
 
   const runRelationshipMemoryRefresh = useCallback(

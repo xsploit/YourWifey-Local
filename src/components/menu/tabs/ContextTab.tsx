@@ -319,7 +319,8 @@ export function ContextTab({
         </div>
         <div className="field-hint">
           Reset All Context clears chat history, draft text, relationship profile, memory store,
-          pending assistant playback, and any in-flight reply for the current session.
+          semantic recall, pending assistant playback, and any in-flight reply for the current
+          session.
         </div>
       </div>
     </>
