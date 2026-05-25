@@ -53,6 +53,7 @@
   "dependencies": {
     "@google/genai": "^2.6.0",
     "@inworld/tts": "^1.1.1",
+    "@ladybugdb/core": "^0.16.1",
     "@mintplex-labs/piper-tts-web": "^1.0.4",
     "@pixiv/three-vrm": "^3.5.1",
     "@pixiv/three-vrm-animation": "^3.5.1",
